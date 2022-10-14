@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".auth.RecoverFragment">
+    tools:context=".ui.auth.RecoverFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -28,6 +28,7 @@
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="0dp"
@@ -50,11 +51,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
         android:text="E-mail"
         android:textColor="@color/white"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="128dp" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName" />
 
     <Button
         android:id="@+id/button"
@@ -66,13 +68,13 @@
         android:background="@drawable/bg_button"
         android:text="Enviar"
         android:textAllCaps="false"
-        android:textColor="@color/blue"
+        android:textColor="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/btn_recover"
         android:layout_width="332dp"
         android:layout_height="44dp"
         android:text="Informe seu e-mail para receber um link
