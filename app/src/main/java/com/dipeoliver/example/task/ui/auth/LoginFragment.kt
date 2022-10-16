@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.dipeoliver.example.task.R
 import com.dipeoliver.example.task.databinding.FragmentLoginBinding
-import com.dipeoliver.example.task.databinding.FragmentSplashBinding
 
 
 class LoginFragment : Fragment() {
@@ -31,7 +30,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun initClicks() {
-        binding.btnRegister.setOnClickListener {
+        binding.btnRegisterAccount.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
         binding.btnRecover.setOnClickListener {
