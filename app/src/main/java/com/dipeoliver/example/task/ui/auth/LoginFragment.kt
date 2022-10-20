@@ -15,7 +15,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class LoginFragment : Fragment() {
-
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
@@ -42,8 +41,9 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
         binding.btnRecover.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_recoverFragment)
-
+            val args = Bundle()
+            args.putString("email", binding.edtEmail.text.toString().trim())
+            findNavController().navigate(R.id.action_loginFragment_to_recoverFragment, args)
         }
     }
 
@@ -58,27 +58,31 @@ class LoginFragment : Fragment() {
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "O campos senha não pode estar vazio",
+                    getString(R.string.empty_password),
                     Toast.LENGTH_SHORT
                 ).show()
             }
         } else {
             Toast.makeText(
                 requireContext(),
-                "O campos e-mail não pode estar vazio",
+                getString(R.string.empty_email),
                 Toast.LENGTH_SHORT
             ).show()
         }
     }
 
     private fun loginUser(email: String, password: String) {
-
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    findNavController().navigate(R.id.action_global_homeFragment)
                 } else {
                     binding.progressBar2.isVisible = false
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.not_login),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }

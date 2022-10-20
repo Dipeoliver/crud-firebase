@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.dipeoliver.example.task.R
 import com.dipeoliver.example.task.databinding.FragmentLoginBinding
 import com.dipeoliver.example.task.databinding.FragmentRecoverBinding
@@ -20,19 +21,25 @@ class RecoverFragment : Fragment() {
     private var _binding: FragmentRecoverBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
+    private lateinit var receivedArgs: String
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recover, container, false)
+        _binding = FragmentRecoverBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = Firebase.auth
         initClicks()
+
+        receivedArgs = requireArguments().get("email").toString()
+        binding.edtEmail.setText(receivedArgs)
     }
 
     private fun initClicks() {
@@ -50,7 +57,7 @@ class RecoverFragment : Fragment() {
         } else {
             Toast.makeText(
                 requireContext(),
-                "O campos e-mail não pode estar vazio",
+                getString(R.string.empty_email),
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -63,7 +70,7 @@ class RecoverFragment : Fragment() {
                 if (task.isSuccessful) {
                     Toast.makeText(
                         requireContext(),
-                        "O link foi enviado com sucesso, verifique sua caixa de e-mail",
+                        getString(R.string.sent_email),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -50,11 +50,11 @@ class RegisterFragment : Fragment() {
                 binding.progressBar.isVisible = true
                 registerUser(email, password)
             } else {
-                Toast.makeText(requireContext(), "As senhas devem serem iguais", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), getString(R.string.check_password), Toast.LENGTH_SHORT)
                     .show()
             }
         } else {
-            Toast.makeText(requireContext(), "Campos não podem estar vazios", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), getString(R.string.empty_fields), Toast.LENGTH_SHORT)
                 .show()
         }
     }
@@ -64,7 +64,7 @@ class RegisterFragment : Fragment() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
+                    findNavController().navigate(R.id.action_global_homeFragment)
                 } else {
                     binding.progressBar.isVisible = false
                 }
