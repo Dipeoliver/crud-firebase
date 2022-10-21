@@ -1,6 +1,7 @@
 package com.dipeoliver.example.task.ui.auth
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.dipeoliver.example.task.R
 import com.dipeoliver.example.task.databinding.FragmentRegisterBinding
+import com.dipeoliver.example.task.helper.FirebaseHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -40,6 +42,7 @@ class RegisterFragment : Fragment() {
             validateData()
         }
     }
+
     private fun validateData() {
         val email = binding.edtEmail.text.toString().trim()
         val password = binding.edtPassword.text.toString().trim()
@@ -50,7 +53,11 @@ class RegisterFragment : Fragment() {
                 binding.progressBar.isVisible = true
                 registerUser(email, password)
             } else {
-                Toast.makeText(requireContext(), getString(R.string.check_password), Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.check_password),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         } else {
@@ -67,6 +74,12 @@ class RegisterFragment : Fragment() {
                     findNavController().navigate(R.id.action_global_homeFragment)
                 } else {
                     binding.progressBar.isVisible = false
+//                    Log.i("INFOTEST", "loginUser: ${task.exception?.message}")
+                    Toast.makeText(
+                        requireContext(),
+                        FirebaseHelper.validError(task.exception?.message ?: ""),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
     }

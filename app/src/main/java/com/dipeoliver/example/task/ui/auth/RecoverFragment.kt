@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.dipeoliver.example.task.R
 import com.dipeoliver.example.task.databinding.FragmentLoginBinding
 import com.dipeoliver.example.task.databinding.FragmentRecoverBinding
+import com.dipeoliver.example.task.helper.FirebaseHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -73,8 +74,15 @@ class RecoverFragment : Fragment() {
                         getString(R.string.sent_email),
                         Toast.LENGTH_SHORT
                     ).show()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        FirebaseHelper.validError(task.exception?.message ?: ""),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
                 binding.progressBar3.isVisible = false
+
             }
     }
 }

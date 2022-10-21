@@ -3,13 +3,14 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
     <!--    Common-->
     <string name="e_mail_fragment">E-mail</string>
     <string name="example_e_mail">email@example.com</string>
     <string name="empty_email">The email field cannot be empty</string>
     <string name="secret_password">********</string>
     <string name="password_fragment">Password</string>
+    <string name="error_generic">Have one problem, try again later.</string>
+
 
     <!--Login Fragment-->
     <string name="login">Login</string>
@@ -37,6 +38,12 @@
     <string name="done">Done</string>
     <string name="logout">Logout</string>
 
+    <!--    errors Firebase Athentication-->
+    <string name="account_not_registered_register_fragment">There is no user record corresponding to this identifier.</string>
+    <string name="invalid_email_register_fragment">The email address is badly formatted.</string>
+    <string name="invalid_password_register_fragment">The password is invalid or the user does not have a password.</string>
+    <string name="email_in_use_register_fragment">The email address is already in use by another account.</string>
+    <string name="strong_password_register_fragment">The given password is invalid.</string>
 
 
 </resources>
