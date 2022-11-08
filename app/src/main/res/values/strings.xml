@@ -45,5 +45,9 @@
     <string name="email_in_use_register_fragment">The email address is already in use by another account.</string>
     <string name="strong_password_register_fragment">The given password is invalid.</string>
 
+    <!--    Form task Fragment-->
+    <string name="text_title_form_task_fragment">New Task</string>
+    <string name="text_text_form_task_fragment">Task</string>
+
 
 </resources>
