@@ -50,25 +50,25 @@ class FormTaskFragment : Fragment() {
     }
 
     private fun validateData() {
-        binding.btnSave.setOnClickListener {
-            val description = binding.edtDescription.text.toString().trim()
-            if (description.isNotEmpty()) {
-                binding.progressBar5.isVisible = true
 
-                if (newTask) task = Task()
-                task.description = description
-                task.status = statusTask
+        val description = binding.edtDescription.text.toString().trim()
+        if (description.isNotEmpty()) {
+            binding.progressBar5.isVisible = true
 
-                saveTask()
-            } else {
+            if (newTask) task = Task()
+            task.description = description
+            task.status = statusTask
 
-                Toast.makeText(
-                    requireContext(),
-                    "Informe uma descrição para a Tarefa",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+            saveTask()
+        } else {
+
+            Toast.makeText(
+                requireContext(),
+                "Informe uma descrição para a Tarefa",
+                Toast.LENGTH_LONG
+            ).show()
         }
+
     }
 
     private fun saveTask() {
