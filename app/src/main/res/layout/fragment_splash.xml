@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.SplashFragment"
-    android:background="@color/rose">
+    android:background="@color/purple_200">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="173dp"
         android:layout_height="192dp"
-        android:src="@drawable/ic_rosa_round"
+        android:src="@drawable/ic_baseline_login_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

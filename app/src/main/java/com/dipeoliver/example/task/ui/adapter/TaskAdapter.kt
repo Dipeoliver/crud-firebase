@@ -6,7 +6,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.dipeoliver.example.task.databinding.ItemAdapterBinding
 import com.dipeoliver.example.task.model.Task
-import com.google.firebase.database.core.Context
 
 class TaskAdapter(
     private val context: android.content.Context,

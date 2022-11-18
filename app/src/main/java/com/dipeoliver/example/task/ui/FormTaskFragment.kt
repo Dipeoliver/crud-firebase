@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.dipeoliver.example.task.R
 import com.dipeoliver.example.task.databinding.FragmentFormTaskBinding
 import com.dipeoliver.example.task.databinding.FragmentTodoBinding
@@ -16,6 +17,8 @@ import com.dipeoliver.example.task.model.Task
 
 
 class FormTaskFragment : Fragment() {
+
+    private val args: FormTaskFragmentArgs by navArgs()
 
     private var _binding: FragmentFormTaskBinding? = null
     private val binding get() = _binding!!
@@ -36,6 +39,7 @@ class FormTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
+        getArgs()
     }
 
     private fun initListeners() {
@@ -112,4 +116,39 @@ class FormTaskFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun getArgs() {
+        args.task.let {
+            if (it != null)
+                task = it
+            configTask()
+
+        }
+    }
+
+    private fun configTask() {
+        newTask = false
+        statusTask = task.status
+        binding.txtTollbar.text = "Editando uma tarefa"
+
+        binding.edtDescription.setText(task.description)
+        setStatus()
+    }
+
+    private fun setStatus() {
+        binding.rbGroup.check(
+            when (task.status) {
+                0 -> {
+                    R.id.rb_todo
+                }
+                1 -> {
+                    R.id.rb_doing
+                }
+                else -> {
+                    R.id.rb_done
+                }
+            }
+        )
+    }
 }
+

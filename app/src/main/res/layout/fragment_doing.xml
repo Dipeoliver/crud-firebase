@@ -7,8 +7,7 @@
     tools:context=".ui.DoingFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_task"
-
+        android:id="@+id/rv_task_doing"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

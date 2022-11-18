@@ -22,7 +22,7 @@
                 android:id="@+id/tabs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@color/rose"
+                android:background="@color/purple_200"
                 android:elevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/ib_logout"

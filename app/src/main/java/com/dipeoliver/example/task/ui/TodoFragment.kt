@@ -77,14 +77,35 @@ class TodoFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        binding.rvTask.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvTask.setHasFixedSize(true)
-        taskAdapter = TaskAdapter(requireContext(), tasklist) { task, int ->
-
+        binding.rvTaskTodo.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvTaskTodo.setHasFixedSize(true)
+        taskAdapter = TaskAdapter(requireContext(), tasklist) { task, select ->
+            optionSelect(task, select)
         }
-        binding.rvTask.adapter = taskAdapter
+        binding.rvTaskTodo.adapter = taskAdapter
     }
 
+    private fun optionSelect(task: Task, select: Int) {
+        when (select) {
+            TaskAdapter.SELECT_REMOVE -> {
+                deleteTask(task)
+            }
+            TaskAdapter.SELECT_EDIT -> {
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToFormTaskFragment(task)
+                findNavController().navigate(action)
+            }
+        }
+    }
+
+    private fun deleteTask(task: Task) {
+        FirebaseHelper
+            .getDatabase()
+            .child("task")
+            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(task.id)
+            .removeValue()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
